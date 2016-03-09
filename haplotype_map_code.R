@@ -5,13 +5,13 @@ require(plyr)
 require(rworldmap)
 require(countrycode)
 data_giardia<-read.csv("giardia.csv", header = T)
-
+data_giardia<-read.csv("Giardia_8-3-16.csv", header = T)
 #require(TeachingDemos)
 
 dF <- getMap()@data  
 
 
-data_giardia<-read.csv("giardia.csv", header = T)
+# data_giardia<-read.csv("giardia.csv", header = T)
 
 iso<-countrycode(data_giardia$Country,"country.name","iso3c")
 data_giardia$iso<-iso
@@ -53,17 +53,17 @@ mapPies(dF =dF,
                   "G",
                   "H"),#,
         zColours=c(1:8),
-        symbolSize = 1.2,        
-        oceanCol = "lightblue",
-        landCol = "wheat",
+        symbolSize = 1.5,        
+        oceanCol = "white",
+        landCol = "lightgrey",
         addSizeLegend=F,
         addCatLegend=F,
         mapRegion="world",
 #         xlim=c(-15,10),
 #         ylim=c(-5,25)
-        ,add=F)
+        add=F)
 
-title(main=paste("Global distribution of Giardia assemblages"),
+title(main=substitute(paste("Global distribution of ",italic('Giardia '),"assemblages")),
       cex=3)
 
 legend(-180.1516,90,
@@ -76,6 +76,139 @@ legend(-180.1516,90,
                 "G",
                 "H"),
        col=c(1:8),
+       pch=16,
+       cex=0.8,
+       pt.cex=1.5,
+       bty="o",
+       box.lty=0,
+       horiz = F,
+       bg="#FFFFFF70")
+##
+dev.off()
+##
+## C hominis
+
+data_hominis<-read.csv("Hominis_8-3-16.csv", header = T)
+#require(TeachingDemos)
+
+dF <- getMap()@data  
+
+iso<-countrycode(data_hominis$Country,"country.name","iso3c")
+data_hominis$iso<-iso
+#############
+
+malMap <- joinCountryData2Map(data_hominis, joinCode = "ISO3",
+                              nameJoinColumn = "iso")
+# This will join your malDF data.frame to the country map data
+
+# mapCountryData(malMap, nameColumnToPlot="Country", 
+#                catMethod = "categorical",
+#                mapTitle="",addLegend=F,
+#                missingCountryCol = "wheat",
+#                mapRegion="world",
+#                #                xlim=c(-15,10),
+#                #                ylim=c(-5,25),
+#                oceanCol = "lightblue",
+#                colourPalette = "terrain"
+# )
+
+dF <- malMap@data
+### make our pie plot
+par(mai= c(0,0,0.6,0),
+    xaxs = "i",
+    yaxs = "i")
+
+pdf("hominis_assemblages.pdf", width=8, height=6)
+
+
+mapPies(dF =dF,
+        nameX="LON",
+        nameY="LAT",
+        nameZs =c('Ia','Ib','Id','Ie', 'If', 'Ig' ,'Ii', 'Ij','Ik'),#
+        zColours=c(1:9),
+        symbolSize = 1.5,        
+        oceanCol = "white",
+        landCol = "lightgrey",
+        addSizeLegend=F,
+        addCatLegend=F,
+        mapRegion="world",
+        #         xlim=c(-15,10),
+        #         ylim=c(-5,25)
+        add=F)
+
+title(main=substitute(paste("Global distribution of ",italic('C. hominis '),"genotypes")),
+      cex=3)
+
+legend(-180.1516,90,
+       legend=c('Ia','Ib','Id','Ie', 'If', 'Ig' ,'Ii', 'Ij','Ik'),
+       col=c(1:9),
+       pch=16,
+       cex=0.8,
+       pt.cex=1.5,
+       bty="o",
+       box.lty=0,
+       horiz = F,
+       bg="#FFFFFF70")
+##
+dev.off()
+##
+
+## C parvum
+
+data_parvum<-read.csv("Parvum_8-3-16.csv", header = T)
+#require(TeachingDemos)
+
+dF <- getMap()@data  
+
+iso<-countrycode(data_parvum$Country,"country.name","iso3c")
+data_parvum$iso<-iso
+#############
+
+malMap <- joinCountryData2Map(data_parvum, joinCode = "ISO3",
+                              nameJoinColumn = "iso")
+# This will join your malDF data.frame to the country map data
+
+# mapCountryData(malMap, nameColumnToPlot="Country", 
+#                catMethod = "categorical",
+#                mapTitle="",addLegend=F,
+#                missingCountryCol = "wheat",
+#                mapRegion="world",
+#                #                xlim=c(-15,10),
+#                #                ylim=c(-5,25),
+#                oceanCol = "lightblue",
+#                colourPalette = "terrain"
+# )
+
+dF <- malMap@data
+### make our pie plot
+par(mai= c(0,0,0.6,0),
+    xaxs = "i",
+    yaxs = "i")
+
+pdf("parvum_assemblages.pdf", width=8, height=6)
+
+
+mapPies(dF =dF,
+        nameX="LON",
+        nameY="LAT",
+        nameZs =c('IIa'	,'IIc',	'IId',	'IIe'	,'IIj'	,'IIo',	'IIf'	,'IIl',	'IIb'	,'IIg',	'IIh',	'IIi'),#
+        zColours=c(1:12),
+        symbolSize = 1.5,        
+        oceanCol = "white",
+        landCol = "lightgrey",
+        addSizeLegend=F,
+        addCatLegend=F,
+        mapRegion="world",
+        #         xlim=c(-15,10),
+        #         ylim=c(-5,25)
+        add=F)
+
+title(main=substitute(paste("Global distribution of ",italic('C. parvum '),"genotypes")),
+      cex=3)
+
+legend(-180.1516,90,
+       legend=c('IIa'	,'IIc',	'IId',	'IIe'	,'IIj'	,'IIo',	'IIf'	,'IIl',	'IIb'	,'IIg',	'IIh',	'IIi'),
+       col=c(1:12),
        pch=16,
        cex=0.8,
        pt.cex=1.5,
