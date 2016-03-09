@@ -53,7 +53,7 @@ mapPies(dF =dF,
                   "G",
                   "H"),#,
         zColours=c(1:8),
-        symbolSize = 1.5,        
+        symbolSize = 3,        
         oceanCol = "white",
         landCol = "lightgrey",
         addSizeLegend=F,
@@ -83,6 +83,15 @@ legend(-180.1516,90,
        box.lty=0,
        horiz = F,
        bg="#FFFFFF70")
+##
+
+## to add NZ pie separately as needed
+# library(mapplots)
+# datNZ<-dF[which(dF$ADMIN=="New Zealand"),]
+# vals<-c(datNZ$A,datNZ$B,datNZ$C,datNZ$D,datNZ$E,datNZ$F,
+#         datNZ$G,datNZ$H)
+# add.pie(z=vals, x=170, y=-45, radius=20,
+#         col=c(1:8), labels='')
 ##
 dev.off()
 ##
@@ -150,6 +159,14 @@ legend(-180.1516,90,
        horiz = F,
        bg="#FFFFFF70")
 ##
+## to add NZ pie separately as needed
+# library(mapplots)
+# datNZ<-dF[which(dF$ADMIN=="New Zealand"),]
+# vals<-c(datNZ$Ia,datNZ$Ib,datNZ$Id,datNZ$Ie,datNZ$If,datNZ$Ii,
+#         datNZ$Ij,datNZ$Ik)
+# add.pie(z=vals, x=170, y=-45, radius=12,
+#         col=c(1:9), labels='')
+##
 dev.off()
 ##
 
@@ -216,6 +233,14 @@ legend(-180.1516,90,
        box.lty=0,
        horiz = F,
        bg="#FFFFFF70")
+## to add New Zealand pie chart separately as needed
+##
+## library(mapplots)
+# datNZ<-dF[which(dF$ADMIN=="New Zealand"),]
+# vals<-c(datNZ$IIa,datNZ$IIc,datNZ$IId,datNZ$IIe,datNZ$IIj,datNZ$IIo,
+#         datNZ$IIf,datNZ$IIl,datNZ$IIb,datNZ$IIg,datNZ$IIh,datNZ$IIi)
+# add.pie(z=vals, x=170, y=-45, radius=12,
+#         col=c(1:12), labels='')
 ##
 dev.off()
 ##
