@@ -4,9 +4,11 @@ require(doBy)
 require(plyr)
 require(rworldmap)
 require(countrycode)
+library(RColorBrewer)
 data_giardia<-read.csv("giardia.csv", header = T)
 data_giardia<-read.csv("Giardia_8-3-16.csv", header = T)
 #require(TeachingDemos)
+data_giardia<-read.csv("Giardia_11-3-16.csv", header = T)
 
 dF <- getMap()@data  
 
@@ -21,16 +23,16 @@ malMap <- joinCountryData2Map(data_giardia, joinCode = "ISO3",
                               nameJoinColumn = "iso")
 # This will join your malDF data.frame to the country map data
 
-mapCountryData(malMap, nameColumnToPlot="A", 
-               catMethod = "categorical",
-               mapTitle="",addLegend=F,
-               missingCountryCol = "wheat",
-               mapRegion="world",
-#                xlim=c(-15,10),
-#                ylim=c(-5,25),
-               oceanCol = "lightblue",
-               colourPalette = "terrain"
-)
+# mapCountryData(malMap, nameColumnToPlot="A", 
+#                catMethod = "categorical",
+#                mapTitle="",addLegend=F,
+#                missingCountryCol = "wheat",
+#                mapRegion="world",
+# #                xlim=c(-15,10),
+# #                ylim=c(-5,25),
+#                oceanCol = "lightblue",
+#                colourPalette = "terrain"
+# )
 
 dF <- malMap@data
 ### make our pie plot
@@ -52,8 +54,8 @@ mapPies(dF =dF,
                   "F",
                   "G",
                   "H"),#,
-        zColours=c(1:8),
-        symbolSize = 3,        
+        zColours=brewer.pal(8,'Paired'),#c(1:8),
+        symbolSize = 1.5,        
         oceanCol = "white",
         landCol = "lightgrey",
         addSizeLegend=F,
@@ -75,7 +77,7 @@ legend(-180.1516,90,
                 "F",
                 "G",
                 "H"),
-       col=c(1:8),
+       col=brewer.pal(8,'Paired'),#c(1:8),
        pch=16,
        cex=0.8,
        pt.cex=1.5,
@@ -92,12 +94,72 @@ legend(-180.1516,90,
 #         datNZ$G,datNZ$H)
 # add.pie(z=vals, x=170, y=-45, radius=20,
 #         col=c(1:8), labels='')
-##
+# ##
 dev.off()
 ##
+# 
+# pdf("giardia_assemblages_europe.pdf", width=8, height=6)
+# 
+# 
+# mapPies(dF =dF,
+#         nameX="LON",
+#         nameY="LAT",
+#         nameZs =c("A",
+#                   "B",
+#                   "C",
+#                   "D",
+#                   "E",
+#                   "F",
+#                   "G",
+#                   "H"),#,
+#         zColours=c(1:8),
+#         symbolSize = 1,        
+#         oceanCol = "white",
+#         landCol = "lightgrey",
+#         addSizeLegend=F,
+#         addCatLegend=F,
+#         mapRegion="world",
+#                  xlim=c(0,50),
+#                  ylim=c(20,90),
+#         add=F)
+# 
+# title(main=substitute(paste("Global distribution of ",italic('Giardia '),"assemblages")),
+#       cex=3)
+# 
+# legend(-180.1516,90,
+#        legend=c("A",
+#                 "B",
+#                 "C",
+#                 "D",
+#                 "E",
+#                 "F",
+#                 "G",
+#                 "H"),
+#        col=c(1:8),
+#        pch=16,
+#        cex=0.8,
+#        pt.cex=1.5,
+#        bty="o",
+#        box.lty=0,
+#        horiz = F,
+#        bg="#FFFFFF70")
+# ##
+
+## to add NZ pie separately as needed
+# library(mapplots)
+# datNZ<-dF[which(dF$ADMIN=="New Zealand"),]
+# vals<-c(datNZ$A,datNZ$B,datNZ$C,datNZ$D,datNZ$E,datNZ$F,
+#         datNZ$G,datNZ$H)
+# add.pie(z=vals, x=170, y=-45, radius=20,
+#         col=c(1:8), labels='')
+# ##
+dev.off()
+
+
 ## C hominis
 
 data_hominis<-read.csv("Hominis_8-3-16.csv", header = T)
+data_hominis<-read.csv("Hominis_11-3-16.csv", header = T)
 #require(TeachingDemos)
 
 dF <- getMap()@data  
@@ -134,7 +196,7 @@ mapPies(dF =dF,
         nameX="LON",
         nameY="LAT",
         nameZs =c('Ia','Ib','Id','Ie', 'If', 'Ig' ,'Ii', 'Ij','Ik'),#
-        zColours=c(1:9),
+        zColours=brewer.pal(9,'Paired'),#c(1:9),
         symbolSize = 1.5,        
         oceanCol = "white",
         landCol = "lightgrey",
@@ -150,7 +212,7 @@ title(main=substitute(paste("Global distribution of ",italic('C. hominis '),"gen
 
 legend(-180.1516,90,
        legend=c('Ia','Ib','Id','Ie', 'If', 'Ig' ,'Ii', 'Ij','Ik'),
-       col=c(1:9),
+       col=brewer.pal(9,'Paired'),#c(1:9),
        pch=16,
        cex=0.8,
        pt.cex=1.5,
@@ -173,6 +235,8 @@ dev.off()
 ## C parvum
 
 data_parvum<-read.csv("Parvum_8-3-16.csv", header = T)
+data_parvum<-read.csv("Parvum_11-3-16.csv", header = T)
+
 #require(TeachingDemos)
 
 dF <- getMap()@data  
@@ -209,7 +273,7 @@ mapPies(dF =dF,
         nameX="LON",
         nameY="LAT",
         nameZs =c('IIa'	,'IIc',	'IId',	'IIe'	,'IIj'	,'IIo',	'IIf'	,'IIl',	'IIb'	,'IIg',	'IIh',	'IIi'),#
-        zColours=c(1:12),
+        zColours=brewer.pal(12,'Paired'),#c(1:12),
         symbolSize = 1.5,        
         oceanCol = "white",
         landCol = "lightgrey",
@@ -225,7 +289,7 @@ title(main=substitute(paste("Global distribution of ",italic('C. parvum '),"geno
 
 legend(-180.1516,90,
        legend=c('IIa'	,'IIc',	'IId',	'IIe'	,'IIj'	,'IIo',	'IIf'	,'IIl',	'IIb'	,'IIg',	'IIh',	'IIi'),
-       col=c(1:12),
+       col=brewer.pal(12,'Paired'),#c(1:12),
        pch=16,
        cex=0.8,
        pt.cex=1.5,
