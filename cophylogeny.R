@@ -1,0 +1,15 @@
+library('ape')
+treeh<-read.tree("Hosts_tree.newick")
+treeh<-read.tree("Hosts_tree_v1.newick.txt")
+
+plot(treeh)
+treec<-read.tree("Crypto_tree.newick")
+plot(treec)
+class(treeh)
+all.equal(treec,treeh)
+library(phytools)
+assoc<-read.csv("Crypto-VertHosts.csv")
+
+assoc<-read.csv("Crypto-VertHosts_v1.csv",header = T,row.names=1)
+class(assoc)
+cophyloplot(treec,treeh,assoc=assoc,rotate=TRUE, length.line = 4, space = 28, gap = 3)
