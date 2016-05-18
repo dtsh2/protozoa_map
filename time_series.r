@@ -1,3 +1,5 @@
+# data from http://www.nzpho.org.nz/NotifiableDisease.aspx
+
 # time series
 giardia<-read.table('giardia_time_series.csv',header=T,sep=',')
 matplot(giardia[1:18,2:13],type='l')
