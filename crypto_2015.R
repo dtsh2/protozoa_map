@@ -1,0 +1,17 @@
+crypto_2015<-read.table('crypto_time_series_2015.csv',header=T,sep=',')
+matplot(crypto[1:18,2:13],type='l')
+library(tidyr)
+
+library(reshape2)
+
+c.ts <- ts(as.vector(t(as.matrix(crypto_2015[14:19,2:13]))))
+c.ts_tot <- t(as.matrix(crypto_2015[14:19,14]))
+pdf("time_series_2010_2015.pdf",width=8,height=10)
+par(mfrow=c(2,1))
+plot(c.ts,xaxt='n',ylab="cases",xlab="",ylim=c(0,max(c.ts)),main = 'Trend')
+polygon( c( 1, 1:length(c.ts), length(c.ts) ), c(0,c.ts,0), col='grey')
+abline(v=seq(from=1,to=length(c.ts),by=12),lty=2,col='grey')
+axis(side=1,at=seq(from=1,to=length(c.ts),by=12),labels=2010:2015)
+#legend('topright',"Cryptosporidiosis",bty='n')
+barplot(c.ts_tot, col='grey',ylab='cases',main="Total",names.arg=c("2010", "2011", "2012",'2013','2014','2015'),xlab='year')
+dev.off()
