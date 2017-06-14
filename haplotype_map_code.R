@@ -5,11 +5,11 @@ require(plyr)
 require(rworldmap)
 require(countrycode)
 library(RColorBrewer)
-data_giardia<-read.csv("giardia.csv", header = T)
-data_giardia<-read.csv("Giardia_8-3-16.csv", header = T)
+# data_giardia<-read.csv("giardia.csv", header = T)
+# data_giardia<-read.csv("Giardia_8-3-16.csv", header = T)
 #require(TeachingDemos)
-data_giardia<-read.csv("Giardia_11-3-16.csv", header = T)
-
+data_giardia<-read.csv("giardia_world_nz_1.csv", header = T)
+colnames(data_giardia)[1]<-'Country'
 dF <- getMap()@data  
 
 
@@ -158,8 +158,9 @@ dev.off()
 
 ## C hominis
 
-data_hominis<-read.csv("Hominis_8-3-16.csv", header = T)
-data_hominis<-read.csv("Hominis_11-3-16.csv", header = T)
+# data_hominis<-read.csv("Hominis_8-3-16.csv", header = T)
+# data_hominis<-read.csv("Hominis_11-3-16.csv", header = T)
+data_hominis<-read.csv("chominis_world_nz_1.csv", header = T)
 #require(TeachingDemos)
 
 dF <- getMap()@data  
@@ -234,8 +235,9 @@ dev.off()
 
 ## C parvum
 
-data_parvum<-read.csv("Parvum_8-3-16.csv", header = T)
-data_parvum<-read.csv("Parvum_11-3-16.csv", header = T)
+# data_parvum<-read.csv("Parvum_8-3-16.csv", header = T)
+# data_parvum<-read.csv("Parvum_11-3-16.csv", header = T)
+data_parvum<-read.csv("cparvum_world_nz_1.csv", header = T)
 
 #require(TeachingDemos)
 
