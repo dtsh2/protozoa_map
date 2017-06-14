@@ -268,14 +268,20 @@ par(mai= c(0,0,0.6,0),
     xaxs = "i",
     yaxs = "i")
 
-pdf("parvum_assemblages.pdf", width=8, height=6)
+#  palette with 4 colors
+coul = brewer.pal(10, "Paired") 
+coul = colorRampPalette(coul)(19)
+# 
+# # Plot it
+# pie(rep(1, length(coul)), col = coul , main="") 
 
+pdf("parvum_assemblages.pdf", width=8, height=6)
 
 mapPies(dF =dF,
         nameX="LON",
         nameY="LAT",
-        nameZs =c('IIa'	,'IIc',	'IId',	'IIe'	,'IIj'	,'IIo',	'IIf'	,'IIl',	'IIb'	,'IIg',	'IIh',	'IIi'),#
-        zColours=brewer.pal(12,'Paired'),#c(1:12),
+        nameZs =c('IIa'	,'IIc',	'IId',	'IIe'	,'IIj'	,'IIo',	'IIf'	,'IIl',	'IIb'	,'IIg',	'IIh',	'IIi','IIj','IIk','IIl','IIm','IIn','IIo','IIp'),#
+        zColours=coul,#brewer.pal(12,'Paired'),#c(1:12),
         symbolSize = 1.5,        
         oceanCol = "white",
         landCol = "lightgrey",
@@ -289,9 +295,9 @@ mapPies(dF =dF,
 title(main=substitute(paste("Global distribution of ",italic('C. parvum '),"genotypes")),
       cex=3)
 
-legend(-180.1516,90,
-       legend=c('IIa'	,'IIc',	'IId',	'IIe'	,'IIj'	,'IIo',	'IIf'	,'IIl',	'IIb'	,'IIg',	'IIh',	'IIi'),
-       col=brewer.pal(12,'Paired'),#c(1:12),
+legend(-180.1516,95,
+       legend=c('IIa'	,'IIc',	'IId',	'IIe'	,'IIj'	,'IIo',	'IIf'	,'IIl',	'IIb'	,'IIg',	'IIh',	'IIi','IIj','IIk','IIl','IIm','IIn','IIo','IIp'),#
+       col=coul,#brewer.pal(12,'Paired'),#c(1:12),
        pch=16,
        cex=0.8,
        pt.cex=1.5,
